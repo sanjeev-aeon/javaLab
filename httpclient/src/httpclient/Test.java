@@ -22,13 +22,14 @@ public class Test {
 			openConnection.connect();
 			InputStream inputStream = openConnection.getInputStream();
 			inputStream.transferTo(System.out);
-			
-			
+
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			if (System.getProperty("http.proxyPort") != null) {
+				System.err.println("possiblly forwarding to proxy, remove jvm param");
+			}
 			e.printStackTrace();
 		}
 	}
